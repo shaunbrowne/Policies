@@ -31,7 +31,7 @@ jobs:
         run: >
           anypoint-cli-v4 api-mgr:policy:apply --config '{"rateLimits": [{
           "maximumRequests": 3, "timePeriodInMilliseconds": 60000 }],
-          "clusterizable": true, "exposeHeaders": false }' 19445712
+          "clusterizable": true, "exposeHeaders": false }' 19447250
           rate-limiting --policyVersion 1.4.0 --client_id
-          c5d62935023743a584feaadfc89b452a --client_secret
-          25D0Be5921724801a4fA7d42074a1203 --environment Sandbox
+          07684cacb1264178a478e4c73b88c7ec --client_secret
+          9134908aE90A4969b7b617e51ad5b04f --environment Sandbox
