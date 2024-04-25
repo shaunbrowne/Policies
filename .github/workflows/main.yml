@@ -1,0 +1,31 @@
+name: Anypoint CLI Automation
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  cli:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Install Anypoint CLI
+        run: npm install -g anypoint-cli-v4
+
+      # Automation using Any CLI
+      - name: Apply API Manager Policy
+        run: anypoint-cli-v4 api-mgr:policy:apply --config '{"rateLimits": [{ "maximumRequests": 3, "timePeriodInMilliseconds": 60000 }], "clusterizable": true, "exposeHeaders": false }' 19447250 rate-limiting --policyVersion 1.4.0 --client_id 07684cacb1264178a478e4c73b88c7ec --client_secret 9134908aE90A4969b7b617e51ad5b04f --environment Sandbox
